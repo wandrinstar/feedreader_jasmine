@@ -1,6 +1,8 @@
 // Tests app.js
 
 $(function() {
+    //Confirms data is defined and not empty.
+    //Trying to read length of undefined and null raises error so that should work.
     describe('RSS Feeds', function() {
         it('Are defined.', function() {
             expect(allFeeds.length).not.toBe(0);
@@ -17,6 +19,7 @@ $(function() {
         });
     });
 
+    //Confirms the menu hides and shows as expected.
     describe('The Menu', function() {
         it('Should be hidden by default.', function() {
             expect($('body').hasClass('menu-hidden')).toBe(true);
@@ -30,6 +33,7 @@ $(function() {
         });
     });
 
+    //Confirms content is displayed at page load.
     describe('Initial Entries', function() {
         beforeEach(function(done) {
             loadFeed(0, function() {
@@ -41,16 +45,18 @@ $(function() {
             done();
         });
     });
+
+    //Confirms content changes when feed changes.
     describe('New Feed Selection.', function() {
-        var originalFeedText;
+        var originalFeedText; // Declare in outer scope so that we have access to it later.
         beforeEach(function(done) {
-            originalFeedText = $('.feed').text();
+            originalFeedText = $('.feed').text(); // Set before loadFeed changes it.
             loadFeed(1, function() {
                 done();
             });
         });
         it('Feed content really does change after new feed is loaded.', function(done) {
-            expect(originalFeedText).not.toBe($('.feed').text());
+            expect(originalFeedText).not.toBe($('.feed').text()); // Comparing original text to current text.
             done();
         });
     });
