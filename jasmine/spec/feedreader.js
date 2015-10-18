@@ -5,15 +5,20 @@ $(function() {
     //Trying to read length of undefined and null raises error so that should work.
     describe('RSS Feeds', function() {
         it('Are defined.', function() {
+            expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
         it('Have defined, non-empty URLs.', function() {
             allFeeds.forEach(function(feed) {
+                expect(feed.url).toBeDefined();
+                expect(feed.url).not.toBe(null);
                 expect(feed.url.length).not.toBe(0);
             });
         });
         it('Have defined, non-empty NAMES.', function() {
             allFeeds.forEach(function(feed) {
+                expect(feed.name).toBeDefined();
+                expect(feed.name).not.toBe(null);
                 expect(feed.name.length).not.toBe(0);
             });
         });
@@ -48,15 +53,18 @@ $(function() {
 
     //Confirms content changes when feed changes.
     describe('New Feed Selection.', function() {
-        var originalFeedText; // Declare in outer scope so that we have access to it later.
+        //Declare in outer scope so that we have access to it later.
+        var originalFeedText;
         beforeEach(function(done) {
-            originalFeedText = $('.feed').text(); // Set before loadFeed changes it.
+            //Set before loadFeed changes it.
+            originalFeedText = $('.feed').text();
             loadFeed(1, function() {
                 done();
             });
         });
         it('Feed content really does change after new feed is loaded.', function(done) {
-            expect(originalFeedText).not.toBe($('.feed').text()); // Comparing original text to current text.
+            //Comparing original text to current text.
+            expect(originalFeedText).not.toBe($('.feed').text());
             done();
         });
     });
