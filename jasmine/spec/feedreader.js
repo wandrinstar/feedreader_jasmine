@@ -4,22 +4,24 @@ $(function() {
     //Confirms data is defined and not empty.
     //Trying to read length of undefined and null raises error so that should work.
     describe('RSS Feeds', function() {
+        function hasValue(variable) {
+            expect(variable).toBeDefined();
+            expect(variable).not.toBe(null);
+            expect(variable.length).not.toBe(0);
+        }
+        //Could use hasValue but according to the original comments this function was not to modified.
         it('Are defined.', function() {
-            expect(allFeeds).toBeDefined();
+            expect(allFeeds).hasValue();
             expect(allFeeds.length).not.toBe(0);
         });
         it('Have defined, non-empty URLs.', function() {
             allFeeds.forEach(function(feed) {
-                expect(feed.url).toBeDefined();
-                expect(feed.url).not.toBe(null);
-                expect(feed.url.length).not.toBe(0);
+                hasValue(feed.url);
             });
         });
         it('Have defined, non-empty NAMES.', function() {
             allFeeds.forEach(function(feed) {
-                expect(feed.name).toBeDefined();
-                expect(feed.name).not.toBe(null);
-                expect(feed.name.length).not.toBe(0);
+                hasValue(feed.name);
             });
         });
     });
