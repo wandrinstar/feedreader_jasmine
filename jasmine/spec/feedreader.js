@@ -1,17 +1,18 @@
 // Tests app.js
 
 $(function() {
-    //Confirms data is defined and not empty.
-    //Trying to read length of undefined and null raises error so that should work.
-    describe('RSS Feeds', function() {
-        function hasValue(variable) {
+    //Helper function.
+    function hasValue(variable) {
             expect(variable).toBeDefined();
             expect(variable).not.toBe(null);
             expect(variable.length).not.toBe(0);
-        }
+    }
+    //Confirms data is defined and not empty.
+    describe('RSS Feeds', function() {
+
         //Could use hasValue but according to the original comments this function was not to modified.
         it('Are defined.', function() {
-            expect(allFeeds).hasValue();
+            expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
         it('Have defined, non-empty URLs.', function() {
