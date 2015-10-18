@@ -9,7 +9,6 @@ $(function() {
     }
     //Confirms data is defined and not empty.
     describe('RSS Feeds', function() {
-
         //Could use hasValue but according to the original comments this function was not to modified.
         it('Are defined.', function() {
             expect(allFeeds).toBeDefined();
